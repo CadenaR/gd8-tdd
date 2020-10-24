@@ -1,0 +1,23 @@
+{
+  "name": "gd8-tdd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CadenaR/gd8-tdd.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CadenaR/gd8-tdd/issues"
+  },
+  "homepage": "https://github.com/CadenaR/gd8-tdd#readme",
+  "devDependencies": {
+    "mocha": "^8.2.0"
+  }
+}
