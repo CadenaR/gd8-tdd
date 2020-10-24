@@ -1,16 +1,16 @@
-const assert = require("mocha");
+const assert = require("assert");
 const BankAccount = require("../models/BankAccount.model");
 
 describe("Bank Account! $$$$ ", () => {
   // Regresa el saldo actual en la cuenta
 
   describe("Obtener el balance de al cuenta", () => {
-    const account = new BankAccount(0);
+    const account = new BankAccount(100);
     it("Balance Correcto", () => {
       assert.strictEqual(account.current(), 100);
     });
     it("[FALLIDA] - Balance Inorrecto", () => {
-      assert.notStrictEqual(account.current(), 100);
+      assert.notStrictEqual(account.current(), 10);
     });
   });
 
@@ -32,15 +32,17 @@ describe("Bank Account! $$$$ ", () => {
 
   // Retira el monto de la cuenta y regresa el saldo final. Si recibe un monto negativo no modifica el saldo.
   describe("Retira el monto de la cuenta y regresa el saldo final. Si recibe un monto negativo no modifica el saldo.", () => {
-    const account = new BankAccount(200);
+    const accountA = new BankAccount(200);
+    const accountB = new BankAccount(200);
+    const accountC = new BankAccount(-200);
     it("Retira monto a {account}", () => {
-      assert.strictEqual(account.substract(100), 100);
+      assert.strictEqual(accountA.substract(100), 100);
     });
     it("No retira monto a {account} por ser negativo", () => {
-      assert.strictEqual(account.substract(-100), 100);
+      assert.strictEqual(accountB.substract(-100), 200);
     });
     it("[FALLIDA] - Retira monto a {account}", () => {
-      assert.notStrictEqual(account.substract(100), 100);
+      assert.notStrictEqual(accountC.substract(100), 200);
     });
   });
 
@@ -64,20 +66,21 @@ describe("Bank Account! $$$$ ", () => {
   describe("Regresa un arreglo de objetos con el historial de movimientos de la cuenta.", () => {
     it("Historial se muestra satisfactoriamente", () => {
       const account = new BankAccount(100);
-      const history = ["Has iniciado una cuenta con {100} mxn"];
-      assert.strictEqual(account.history(), history);
+      assert.deepStrictEqual(account.getHistory(), [
+        "Has iniciado una cuenta con {100} mxn",
+      ]);
     });
 
     it("Historial tiene el lenght correcto", () => {
       const account = new BankAccount(100);
       const history = ["Has iniciado una cuenta con {100} mxn"];
-      assert.strictEqual(account.history().length, 1);
+      assert.strictEqual(account.getHistory().length, 1);
     });
 
     it("[FALLIDA] - Historial se muestra satisfactoriamente", () => {
       const account = new BankAccount(100);
       const history = ["Has iniciado una cuenta con {200} mxn"];
-      assert.notStrictEqual(account.history(), history);
+      assert.notStrictEqual(account.getHistory(), history);
     });
   });
 });

@@ -1,27 +1,42 @@
 class BankAccount {
   constructor(balance) {
     this.balance = balance;
-    this.history = [];
+    this.history = [`Has iniciado una cuenta con {${balance}} mxn`];
   }
 
   current() {
-    return;
+    return this.balance;
   }
 
   append(amount) {
-    return;
+    if (amount > 0) {
+      this.balance += amount;
+      this.history.push(`Se han depositado ${amount} total ${this.balance}`);
+    } else {
+      this.history.push(`No se han podido depositar ${amount}`);
+    }
+
+    return this.balance;
   }
 
   substract(amount) {
-    return;
+    if (amount > 0) {
+      this.balance -= amount;
+      this.history.push(`Se han retirado ${amount} total ${this.balance}`);
+    } else {
+      this.history.push(`No se han podido retirar ${amount}`);
+    }
+    return this.balance;
   }
 
   merge(account) {
-    return;
+    this.balance += account.balance;
+    this.history.push(`Se ha unido la cuenta con saldo ${account.balance}`);
+    return this.balance;
   }
 
-  history() {
-    return;
+  getHistory() {
+    return this.history;
   }
 }
 

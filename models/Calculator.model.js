@@ -2,19 +2,19 @@ class Calculator {
   constructor() {}
 
   sum(a, b) {
-    return;
+    return { x: a.x + b.x, y: a.y + b.y };
   }
 
   sub(a, b) {
-    return;
+    return { x: a.x - b.x, y: a.y - b.y };
   }
 
-  scalar(a, x) {
-    return;
+  scalar(a, X) {
+    return { x: a.x * X, y: a.y * X };
   }
 
   dot(a, b) {
-    return;
+    return a.x * b.x + a.y * b.y;
   }
 }
 
